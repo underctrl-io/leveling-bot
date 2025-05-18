@@ -9,6 +9,7 @@ Leveling Bot is a Discord bot for managing user levels and experience points (XP
 - Redis powered caching with on-demand cache invalidation
 - Rate limiting to prevent spam
 - Hybrid commands (use interactions or message commands)
+- Customizable prefix for message commands
 
 ## Tech Stack
 
@@ -38,8 +39,26 @@ Create a `.env` file in the root directory and add the following variables:
 DISCORD_TOKEN="xxx"
 
 # Redis url
-REDIS_URL=redis://localhost:6379
+REDIS_URL="redis://localhost:6379"
 
 # Database url
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+```
+
+### Running the Bot
+
+```bash
+bun dev
+```
+
+### Building the Bot
+
+```bash
+bun run build
+```
+
+### Running in Production
+
+```bash
+bun start
 ```
