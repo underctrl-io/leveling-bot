@@ -3,16 +3,14 @@ import {
   type ChatInputCommand,
   type MessageCommand,
   type UserContextMenuCommand,
-  Logger,
 } from 'commandkit';
-import { LevelingModule } from '../../../modules/leveling-module';
-import { cacheLife, cacheTag } from '@commandkit/cache';
 import {
   ApplicationCommandOptionType,
-  AttachmentBuilder,
+  ChatInputCommandInteraction,
+  UserContextMenuCommandInteraction,
   type User,
 } from 'discord.js';
-import { BuiltInGraphemeProvider, RankCardBuilder } from 'canvacord';
+import { getRankCard } from './_rank.utils';
 
 export const command: CommandData = {
   name: 'rank',
@@ -27,133 +25,56 @@ export const command: CommandData = {
   ],
 };
 
-async function fetchLevel(guildId: string, userId: string) {
-  'use cache';
-
-  cacheTag(`xp:${guildId}:${userId}`);
-  cacheLife('1h');
-
-  const level = await LevelingModule.getLevel(guildId, userId);
-
-  if (!level) return null;
-
-  const rank = (await LevelingModule.getRank(guildId, userId)) ?? 0;
-
-  return { level, rank };
-}
-
-async function createRankCard(
-  levelingData: {
-    level: { xp: number; level: number };
-    rank: number;
-  },
-  target: User
+async function commonInteraction(
+  interaction: ChatInputCommandInteraction | UserContextMenuCommandInteraction
 ) {
-  const { level, rank } = levelingData;
+  const guildId = interaction.guildId!;
+  const target = interaction.isUserContextMenuCommand()
+    ? interaction.targetUser
+    : interaction.options.getUser('user', false) ?? interaction.user;
 
-  const card = new RankCardBuilder()
-    .setAvatar(
-      target.displayAvatarURL({
-        forceStatic: true,
-        extension: 'png',
-        size: 512,
-      })
-    )
-    .setCurrentXP(level.xp)
-    .setRequiredXP(LevelingModule.calculateLevelXP(level.level))
-    .setLevel(level.level)
-    .setRank(rank)
-    .setUsername(target.globalName ?? target.username)
-    .setDisplayName(target.globalName ?? target.username)
-    .setStatus('none')
-    .setGraphemeProvider(BuiltInGraphemeProvider.Twemoji);
+  if (target.bot) {
+    await interaction.reply({
+      content: 'You cannot check the rank of a bot.',
+      ephemeral: true,
+    });
+    return;
+  }
 
-  const image = await card.build({
-    format: 'webp',
+  await interaction.deferReply();
+
+  const attachment = await getRankCard(
+    guildId,
+    // mismatched User type
+    target as unknown as User
+  );
+
+  if (!attachment) {
+    await interaction.editReply({
+      content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
+    });
+
+    return;
+  }
+
+  await interaction.editReply({
+    content: `${target.username}'s rank card`,
+    files: [attachment],
   });
-
-  const attachment = new AttachmentBuilder(image, {
-    name: `rank-${target.id}.webp`,
-    description: `Rank card for ${target.username}`,
-  });
-
-  return attachment;
 }
 
 export const userContextMenu: UserContextMenuCommand = async (ctx) => {
-  const guildId = ctx.interaction.guildId!;
-  const target = ctx.interaction.targetUser;
-
-  if (target.bot) {
-    await ctx.interaction.reply({
-      content: 'You cannot check the rank of a bot.',
-      ephemeral: true,
-    });
-    return;
-  }
-
-  await ctx.interaction.deferReply();
-
-  const levelingData = await fetchLevel(guildId, target.id);
-
-  if (!levelingData) {
-    await ctx.interaction.editReply({
-      content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
-    });
-
-    return;
-  }
-
-  const attachment = await createRankCard(
-    levelingData,
-    // mismatched User type
-    target as unknown as User
+  await commonInteraction(
+    // type conflict
+    ctx.interaction as unknown as UserContextMenuCommandInteraction
   );
-
-  await ctx.interaction.editReply({
-    content: `${target.username}'s rank card`,
-    files: [attachment],
-  });
 };
 
 export const chatInput: ChatInputCommand = async (ctx) => {
-  const guildId = ctx.interaction.guildId!;
-  const target = ctx.options.getUser('user', false) ?? ctx.interaction.user;
-
-  if (target.bot) {
-    await ctx.interaction.reply({
-      content: 'You cannot check the rank of a bot.',
-      ephemeral: true,
-    });
-    return;
-  }
-
-  await ctx.interaction.deferReply();
-
-  const start = performance.now();
-  const levelingData = await fetchLevel(guildId, target.id);
-  const end = performance.now() - start;
-
-  Logger.info(`Level data fetched in ${end.toFixed(2)}ms`);
-
-  if (!levelingData) {
-    await ctx.interaction.editReply({
-      content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
-    });
-
-    return;
-  }
-
-  const attachment = await createRankCard(
-    levelingData,
-    // mismatched User type
-    target as unknown as User
+  await commonInteraction(
+    // type conflict
+    ctx.interaction as unknown as ChatInputCommandInteraction
   );
-
-  await ctx.interaction.editReply({
-    content: `${target.username}'s rank card`,
-    files: [attachment],
-  });
 };
 
 export const message: MessageCommand = async (ctx) => {
@@ -181,21 +102,19 @@ export const message: MessageCommand = async (ctx) => {
     return;
   }
 
-  const levelingData = await fetchLevel(guildId, target.id);
+  const attachment = await getRankCard(
+    guildId,
+    // mismatched User type
+    target as unknown as User
+  );
 
-  if (!levelingData) {
+  if (!attachment) {
     await ctx.message.reply({
       content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
     });
 
     return;
   }
-
-  const attachment = await createRankCard(
-    levelingData,
-    // mismatched User type
-    target as unknown as User
-  );
 
   await ctx.message.reply({
     content: `${target.username}'s rank card`,

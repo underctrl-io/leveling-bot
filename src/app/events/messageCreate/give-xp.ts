@@ -2,12 +2,29 @@ import type { Message } from 'discord.js';
 import { randomInt } from 'node:crypto';
 import { LevelingModule } from '../../../modules/leveling-module';
 import { invalidate } from '@commandkit/cache';
+import { getCommandKit } from 'commandkit';
+import { fetchGuildPrefix } from '../../../utils/prefix-resolver';
+import { isRateLimited } from '../../../utils/throttle';
 
 export default async function onMessageCreate(message: Message) {
   // ignore DMs
   if (!message.inGuild()) return;
   // ignore bot messages
   if (message.author.bot) return;
+
+  const prefix = await fetchGuildPrefix(message.guildId);
+
+  // ignore messages that don't start with the prefix
+  if (message.content.startsWith(prefix)) return;
+
+  const rateLimited = await isRateLimited(
+    `xp_ratelimit:${message.guildId}:${message.author.id}`,
+    60_000
+  );
+
+  if (rateLimited) return;
+
+  const commandkit = getCommandKit(true);
 
   const isBooster = message.member?.premiumSinceTimestamp != null;
 
@@ -28,11 +45,10 @@ export default async function onMessageCreate(message: Message) {
     if (nextXP > currentLevelXP) {
       await LevelingModule.incrementLevel(message.guildId, message.author.id);
 
-      await message.reply({
-        content: `You leveled up to level ${
-          currentLevel.level + 1
-        }! You now have ${nextXP} XP.`,
-      });
+      // emit a custom event to notify the user
+      commandkit.events
+        .to('leveling')
+        .emit('levelUp', message, currentLevel.level + 1);
 
       // invalidate the cache for the user and leaderboard
       await invalidate([

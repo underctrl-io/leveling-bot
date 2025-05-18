@@ -13,18 +13,18 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/node": "^22.15.17"
+    "@types/node": "^22.15.18"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@commandkit/cache": "^0.0.0-dev.20250513133002",
-    "@commandkit/redis": "^0.1.1-dev.20250513133002",
-    "@prisma/client": "^6.7.0",
+    "@commandkit/cache": "^0.0.0-dev.20250518020653",
+    "@commandkit/redis": "^0.1.1-dev.20250518020653",
+    "@prisma/client": "^6.8.2",
     "canvacord": "^6.0.2",
-    "commandkit": "^1.0.0-dev.20250513133002",
-    "discord.js": "^14",
-    "prisma": "^6.7.0"
+    "commandkit": "^1.0.0-dev.20250518115601",
+    "discord.js": "^14.19.3",
+    "prisma": "^6.8.2"
   }
 }
