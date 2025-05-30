@@ -10,19 +10,15 @@ import {
 } from 'commandkit';
 import { AttachmentBuilder, Colors, Guild, MessageFlags } from 'discord.js';
 import { getLeaderboardCard } from './_leaderboard.utils';
+import { locale } from '@commandkit/i18n';
 
 export const command: CommandData = {
   name: 'leaderboard',
   description: 'leaderboard command',
 };
 
-function Component({
-  attachment,
-  t,
-}: {
-  attachment: AttachmentBuilder;
-  t: (key: string, params?: Record<string, string>) => string;
-}) {
+function Component({ attachment }: { attachment: AttachmentBuilder }) {
+  const { t } = locale();
   const url = `attachment://${attachment.name}`;
 
   return (
@@ -51,7 +47,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
   }
 
   await ctx.interaction.editReply({
-    components: [<Component attachment={leaderboard} t={t} />],
+    components: [<Component attachment={leaderboard} />],
     files: [leaderboard],
     flags: MessageFlags.IsComponentsV2,
   });
@@ -71,7 +67,7 @@ export const message: MessageCommand = async (ctx) => {
 
   await ctx.message.reply({
     files: [leaderboard],
-    components: [<Component attachment={leaderboard} t={t} />],
+    components: [<Component attachment={leaderboard} />],
     flags: MessageFlags.IsComponentsV2,
   });
 };

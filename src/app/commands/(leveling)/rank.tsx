@@ -19,6 +19,7 @@ import {
   type User,
 } from 'discord.js';
 import { getRankCard } from './_rank.utils';
+import { locale } from '@commandkit/i18n';
 
 export const command: CommandData = {
   name: 'rank',
@@ -36,12 +37,11 @@ export const command: CommandData = {
 function Component({
   attachment,
   target,
-  t,
 }: {
   attachment: AttachmentBuilder;
   target: User;
-  t: (key: string, params?: Record<string, string>) => string;
 }) {
+  const { t } = locale();
   const url = `attachment://${attachment.name}`;
 
   return (
@@ -88,7 +88,7 @@ async function commonInteraction(
 
   await interaction.editReply({
     files: [attachment],
-    components: [<Component attachment={attachment} target={target} t={t} />],
+    components: [<Component attachment={attachment} target={target} />],
     flags: MessageFlags.IsComponentsV2,
   });
 }
@@ -147,11 +147,7 @@ export const message: MessageCommand = async (ctx) => {
   await ctx.message.reply({
     files: [attachment],
     components: [
-      <Component
-        attachment={attachment}
-        target={target as unknown as User}
-        t={t}
-      />,
+      <Component attachment={attachment} target={target as unknown as User} />,
     ],
     flags: MessageFlags.IsComponentsV2,
   });
