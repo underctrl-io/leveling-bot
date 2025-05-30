@@ -10,6 +10,8 @@ Leveling Bot is a Discord bot for managing user levels and experience points (XP
 - Rate limiting to prevent spam
 - Hybrid commands (use interactions or message commands)
 - Customizable prefix for message commands
+- Multi-language support
+- Components v2
 
 ## Tech Stack
 
