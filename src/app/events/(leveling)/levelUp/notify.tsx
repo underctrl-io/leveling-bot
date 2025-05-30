@@ -1,4 +1,4 @@
-import { Container, Section, TextDisplay } from 'commandkit';
+import { Container, TextDisplay } from 'commandkit';
 import { Colors, Message, MessageFlags } from 'discord.js';
 import { randomInt } from 'node:crypto';
 

@@ -1,6 +1,6 @@
 import type { CommandData, ChatInputCommand, MessageCommand } from 'commandkit';
 import { ApplicationCommandOptionType } from 'discord.js';
-import { prisma } from '../../../database/db';
+import { prisma } from '@/database/db';
 
 export const command: CommandData = {
   name: 'set-prefix',
@@ -26,21 +26,23 @@ async function updatePrefix(guildId: string, prefix: string) {
 }
 
 export const chatInput: ChatInputCommand = async (ctx) => {
+  const { t } = ctx.locale();
   const prefix = ctx.options.getString('prefix', true);
 
   const result = await updatePrefix(ctx.interaction.guildId!, prefix);
 
   await ctx.interaction.reply({
-    content: `Prefix set to \`${result.messagePrefix}\``,
+    content: t('prefix_set', { prefix: result.messagePrefix }),
   });
 };
 
 export const message: MessageCommand = async (ctx) => {
+  const { t } = ctx.locale();
   const prefix = ctx.options.getString('prefix', true);
 
   const result = await updatePrefix(ctx.message.guildId!, prefix);
 
   await ctx.message.reply({
-    content: `Prefix set to \`${result.messagePrefix}\``,
+    content: t('prefix_set', { prefix: result.messagePrefix }),
   });
 };

@@ -4,8 +4,8 @@ import {
   LeaderboardVariants,
 } from 'canvacord';
 import { AttachmentBuilder, Guild } from 'discord.js';
-import { LevelingModule } from '../../../modules/leveling-module';
-import { useEnvironment } from 'commandkit';
+import { LevelingModule } from '@/modules/leveling-module';
+import { useClient } from 'commandkit/hooks';
 import { cacheTag } from '@commandkit/cache';
 
 async function fetchLeaderboard(guildId: string) {
@@ -13,7 +13,7 @@ async function fetchLeaderboard(guildId: string) {
 
   cacheTag(`leaderboard:${guildId}`);
 
-  const { client } = useEnvironment().commandkit;
+  const client = useClient();
 
   const leaderboard = await LevelingModule.computeLeaderboard(guildId);
   const total = await LevelingModule.countEntries(guildId);
@@ -82,7 +82,7 @@ async function createLeaderboardCard(data: {
   });
 
   const attachment = new AttachmentBuilder(image, {
-    name: `leaderboard-${data.guildName}.webp`,
+    name: `leaderboard-${data.guildName.replace(/ /g, '-')}.webp`,
     description: `Leaderboard for ${data.guildName}`,
   });
 

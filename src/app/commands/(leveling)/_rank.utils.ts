@@ -1,7 +1,7 @@
 import { cacheLife, cacheTag } from '@commandkit/cache';
-import { LevelingModule } from '../../../modules/leveling-module';
+import { LevelingModule } from '@/modules/leveling-module';
 import { BuiltInGraphemeProvider, RankCardBuilder } from 'canvacord';
-import { AttachmentBuilder, Guild, User } from 'discord.js';
+import { AttachmentBuilder, User } from 'discord.js';
 
 async function fetchLevel(guildId: string, userId: string) {
   'use cache';

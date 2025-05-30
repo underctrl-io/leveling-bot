@@ -50,5 +50,3 @@ export async function beforeExecute(ctx: MiddlewareContext) {
 
   return ctx.cancel();
 }
-
-export async function afterExecute(ctx: MiddlewareContext) {}

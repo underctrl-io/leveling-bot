@@ -3,10 +3,18 @@ import {
   type ChatInputCommand,
   type MessageCommand,
   type UserContextMenuCommand,
+  TextDisplay,
+  Container,
+  Separator,
+  MediaGallery,
+  MediaGalleryItem,
 } from 'commandkit';
 import {
   ApplicationCommandOptionType,
+  AttachmentBuilder,
   ChatInputCommandInteraction,
+  Colors,
+  MessageFlags,
   UserContextMenuCommandInteraction,
   type User,
 } from 'discord.js';
@@ -25,8 +33,33 @@ export const command: CommandData = {
   ],
 };
 
+function Component({
+  attachment,
+  target,
+  t,
+}: {
+  attachment: AttachmentBuilder;
+  target: User;
+  t: (key: string, params?: Record<string, string>) => string;
+}) {
+  const url = `attachment://${attachment.name}`;
+
+  return (
+    <Container accentColor={Colors.Blurple}>
+      <TextDisplay>
+        # {t('rank_title', { username: target.username })}
+      </TextDisplay>
+      <Separator />
+      <MediaGallery>
+        <MediaGalleryItem url={url} />
+      </MediaGallery>
+    </Container>
+  );
+}
+
 async function commonInteraction(
-  interaction: ChatInputCommandInteraction | UserContextMenuCommandInteraction
+  interaction: ChatInputCommandInteraction | UserContextMenuCommandInteraction,
+  t: (key: string, params?: Record<string, string>) => string
 ) {
   const guildId = interaction.guildId!;
   const target = interaction.isUserContextMenuCommand()
@@ -35,7 +68,7 @@ async function commonInteraction(
 
   if (target.bot) {
     await interaction.reply({
-      content: 'You cannot check the rank of a bot.',
+      content: t('bot_not_allowed'),
       ephemeral: true,
     });
     return;
@@ -43,45 +76,44 @@ async function commonInteraction(
 
   await interaction.deferReply();
 
-  const attachment = await getRankCard(
-    guildId,
-    // mismatched User type
-    target as unknown as User
-  );
+  const attachment = await getRankCard(guildId, target as unknown as User);
 
   if (!attachment) {
     await interaction.editReply({
-      content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
+      content: t('not_ranked', { username: target.username }),
     });
 
     return;
   }
 
   await interaction.editReply({
-    content: `${target.username}'s rank card`,
     files: [attachment],
+    components: [<Component attachment={attachment} target={target} t={t} />],
+    flags: MessageFlags.IsComponentsV2,
   });
 }
 
 export const userContextMenu: UserContextMenuCommand = async (ctx) => {
+  const { t } = ctx.locale();
   await commonInteraction(
-    // type conflict
-    ctx.interaction as unknown as UserContextMenuCommandInteraction
+    ctx.interaction as unknown as UserContextMenuCommandInteraction,
+    t
   );
 };
 
 export const chatInput: ChatInputCommand = async (ctx) => {
+  const { t } = ctx.locale();
   await commonInteraction(
-    // type conflict
-    ctx.interaction as unknown as ChatInputCommandInteraction
+    ctx.interaction as unknown as ChatInputCommandInteraction,
+    t
   );
 };
 
 export const message: MessageCommand = async (ctx) => {
+  const { t } = ctx.locale();
   const guildId = ctx.message.guildId!;
   const target =
     ctx.message.mentions.users
-      // omit the client user if the prefix mentions the bot
       .filter((u) => u.id !== ctx.client.user!.id)
       .first() ?? ctx.message.author;
 
@@ -89,35 +121,38 @@ export const message: MessageCommand = async (ctx) => {
     await ctx.message.reply({
       content:
         ctx.message.mentions.users.size > 0
-          ? "I don't have rank silly"
-          : 'You need to mention a user to check their rank.',
+          ? t('bot_no_rank')
+          : t('no_mention'),
     });
     return;
   }
 
   if (target.bot) {
     await ctx.message.reply({
-      content: 'You cannot check the rank of a bot.',
+      content: t('bot_not_allowed'),
     });
     return;
   }
 
-  const attachment = await getRankCard(
-    guildId,
-    // mismatched User type
-    target as unknown as User
-  );
+  const attachment = await getRankCard(guildId, target as unknown as User);
 
   if (!attachment) {
     await ctx.message.reply({
-      content: `${target.username} is not ranked yet. Tell them to send a message in the server to get ranked!`,
+      content: t('not_ranked', { username: target.username }),
     });
 
     return;
   }
 
   await ctx.message.reply({
-    content: `${target.username}'s rank card`,
     files: [attachment],
+    components: [
+      <Component
+        attachment={attachment}
+        target={target as unknown as User}
+        t={t}
+      />,
+    ],
+    flags: MessageFlags.IsComponentsV2,
   });
 };

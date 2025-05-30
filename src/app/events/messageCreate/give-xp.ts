@@ -1,10 +1,10 @@
 import type { Message } from 'discord.js';
 import { randomInt } from 'node:crypto';
-import { LevelingModule } from '../../../modules/leveling-module';
+import { LevelingModule } from '@/modules/leveling-module';
 import { invalidate } from '@commandkit/cache';
 import { getCommandKit } from 'commandkit';
-import { fetchGuildPrefix } from '../../../utils/prefix-resolver';
-import { isRateLimited } from '../../../utils/throttle';
+import { fetchGuildPrefix } from '@/utils/prefix-resolver';
+import { isRateLimited } from '@/utils/throttle';
 
 export default async function onMessageCreate(message: Message) {
   // ignore DMs

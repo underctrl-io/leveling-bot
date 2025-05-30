@@ -1,4 +1,4 @@
-import { redis } from '../redis/redis';
+import { redis } from '@/redis/redis';
 
 export async function isRateLimited(key: string, time: number) {
   const exists = await redis.get(key);

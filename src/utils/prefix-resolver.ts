@@ -1,5 +1,5 @@
 import { cacheTag } from '@commandkit/cache';
-import { prisma } from '../database/db';
+import { prisma } from '@/database/db';
 
 async function fetchGuildPrefix(guildId: string) {
   'use cache';
