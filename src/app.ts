@@ -1,5 +1,5 @@
 import { Client, IntentsBitField } from 'discord.js';
-import { onApplicationBootstrap } from 'commandkit';
+import { commandkit } from 'commandkit';
 import { setCacheProvider } from '@commandkit/cache';
 import { RedisCache } from '@commandkit/redis';
 import { Font } from 'canvacord';
@@ -10,13 +10,11 @@ import { redis } from './redis/redis';
 Font.loadDefault();
 
 // set the prefix resolver for message commands
-onApplicationBootstrap(async (commandkit) => {
-  commandkit.setPrefixResolver((message) =>
-    message.inGuild() ? fetchGuildPrefix(message.guildId) : '!'
-  );
+commandkit.setPrefixResolver((message) =>
+  message.inGuild() ? fetchGuildPrefix(message.guildId) : '!'
+);
 
-  setCacheProvider(new RedisCache(redis));
-});
+setCacheProvider(new RedisCache(redis));
 
 const client = new Client({
   intents: [

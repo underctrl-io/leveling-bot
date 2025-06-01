@@ -4,13 +4,13 @@
     "": {
       "name": "leveling-bot",
       "dependencies": {
-        "@commandkit/cache": "^0.0.0-dev.20250530151225",
-        "@commandkit/devtools": "^0.0.0-dev.20250530151225",
-        "@commandkit/i18n": "^0.1.2-dev.20250530151225",
-        "@commandkit/redis": "^0.1.1-dev.20250530151225",
+        "@commandkit/cache": "^0.0.0-dev.20250601135251",
+        "@commandkit/devtools": "^0.0.0-dev.20250601135251",
+        "@commandkit/i18n": "^0.1.2-dev.20250601135251",
+        "@commandkit/redis": "^0.1.1-dev.20250601135251",
         "@prisma/client": "^6.8.2",
         "canvacord": "^6.0.2",
-        "commandkit": "^1.0.0-dev.20250530151225",
+        "commandkit": "^1.0.0-dev.20250601135251",
         "discord.js": "^14.19.3",
         "prisma": "^6.8.2",
         "sharp": "^0.34.2",
@@ -83,13 +83,13 @@
 
     "@babel/types": ["@babel/types@7.27.3", "", { "dependencies": { "@babel/helper-string-parser": "^7.27.1", "@babel/helper-validator-identifier": "^7.27.1" } }, "sha512-Y1GkI4ktrtvmawoSq+4FCVHNryea6uR+qUQy0AGxLSsjCX0nVmkYQMBLHDkXZuo5hGx7eYdnIaslsdBFm7zbUw=="],
 
-    "@commandkit/cache": ["@commandkit/cache@0.0.0-dev.20250530151225", "", { "dependencies": { "ms": "^2.1.3" } }, "sha512-55OjD5pZsFCNpjWOSHlfDZcnFxI4SWrBXVZcDP7udfxQOyUl1uCNBe0j/Dkflw3LKd5+N0uDqMQqjG8HHIJ+uQ=="],
+    "@commandkit/cache": ["@commandkit/cache@0.0.0-dev.20250601135251", "", { "dependencies": { "ms": "^2.1.3" } }, "sha512-tbjMgEixi2f9II8H88Hvr2v93qOlaC94fsMk7C0tfUW1KKraH5b7an4IL1uzemGnLv9bAZ9uBVgkqYtLkd/yrA=="],
 
-    "@commandkit/devtools": ["@commandkit/devtools@0.0.0-dev.20250530151225", "", { "dependencies": { "cors": "^2.8.5", "express": "^5.0.0", "jsonwebtoken": "^9.0.2" } }, "sha512-4qALUrtboNOpZYYwrgL9zbuw87vx9x4hDwIPi9kcbUIGPXa0B29ClVQ5ynGbMdM6I197w0sP1xd+9vgO6szJtg=="],
+    "@commandkit/devtools": ["@commandkit/devtools@0.0.0-dev.20250601135251", "", { "dependencies": { "cors": "^2.8.5", "express": "^5.0.0", "jsonwebtoken": "^9.0.2" } }, "sha512-nvEjNu6NrpCnhQ/oy//oeCBHmBxI46YMl1apuYhBE1vNtGsiAR9RV68ya9yMnEFLtGIiZMOyAtHlcTX9b54y2A=="],
 
-    "@commandkit/i18n": ["@commandkit/i18n@0.1.2-dev.20250530151225", "", { "dependencies": { "i18next": "^25.0.0", "i18next-fs-backend": "^2.6.0" } }, "sha512-Xychqni6uQjXOU38GjfNf4NaH56miV6oRqbf1ephN3WyZtIdZ8WS6HrHdHHoewQQe/BUD1INvLDxMLbQQELSSA=="],
+    "@commandkit/i18n": ["@commandkit/i18n@0.1.2-dev.20250601135251", "", { "dependencies": { "i18next": "^25.0.0", "i18next-fs-backend": "^2.6.0" } }, "sha512-H6pExt604oj4E3rV1N+pc/hBGpq8QJ3FSglkUAoQ9qMhWusNaKhGuzdwuSS3iZkXDVGCawNJSFtzWfXx4NfUng=="],
 
-    "@commandkit/redis": ["@commandkit/redis@0.1.1-dev.20250530151225", "", { "dependencies": { "ioredis": "^5.4.2" } }, "sha512-22QB/dFAFGVhfMq0RSzNlJOa9gs7+hkly8CJfooi6RJjXWLuT4Q9CN1L4+4jS0hrHe8mwvKwAUUv560jJC0EkA=="],
+    "@commandkit/redis": ["@commandkit/redis@0.1.1-dev.20250601135251", "", { "dependencies": { "ioredis": "^5.4.2" } }, "sha512-WIdBi/OkEjndhwTz5QB6NujGm82vPSggvSLCTqLZJ7gFMTHoJgNNs2pzSTfA+otznTieV5TmEnhMCq4/xFxpfg=="],
 
     "@discordjs/builders": ["@discordjs/builders@1.11.2", "", { "dependencies": { "@discordjs/formatters": "^0.6.1", "@discordjs/util": "^1.1.1", "@sapphire/shapeshift": "^4.0.0", "discord-api-types": "^0.38.1", "fast-deep-equal": "^3.1.3", "ts-mixer": "^6.0.4", "tslib": "^2.6.3" } }, "sha512-F1WTABdd8/R9D1icJzajC4IuLyyS8f3rTOz66JsSI3pKvpCAtsMBweu8cyNYsIyvcrKAVn9EPK+Psoymq+XC0A=="],
 
@@ -387,7 +387,7 @@
 
     "commander": ["commander@13.1.0", "", {}, "sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw=="],
 
-    "commandkit": ["commandkit@1.0.0-dev.20250530151225", "", { "dependencies": { "@rollup/plugin-json": "^6.1.0", "chokidar": "^4.0.3", "commander": "^13.0.0", "directive-to-hof": "^0.0.2", "dotenv": "^16.4.7", "ms": "^2.1.3", "ora": "^8.0.1", "picocolors": "^1.1.1", "rfdc": "^1.3.1", "rimraf": "^6.0.0", "tsdown": "^0.12.4", "use-macro": "^1.1.0" }, "peerDependencies": { "discord.js": "^14" }, "bin": { "commandkit": "bin/index.mjs" } }, "sha512-p+slgS5DcRhBOjq28tcqG+Tk6HCMKpRVavPgtv04IGwKJHgSfv01HLgwWLP5koPA5iJd8mD8MxmzpG1JfBbmYw=="],
+    "commandkit": ["commandkit@1.0.0-dev.20250601135251", "", { "dependencies": { "@rollup/plugin-json": "^6.1.0", "chokidar": "^4.0.3", "commander": "^13.0.0", "directive-to-hof": "^0.0.2", "dotenv": "^16.4.7", "ms": "^2.1.3", "ora": "^8.0.1", "picocolors": "^1.1.1", "rfdc": "^1.3.1", "rimraf": "^6.0.0", "tsdown": "^0.12.4", "use-macro": "^1.1.0" }, "peerDependencies": { "discord.js": "^14" }, "bin": { "commandkit": "bin/index.mjs" } }, "sha512-g3lfkjxMB53BrUhbpAAJgrUTKKNtfcy280HGttsWUWsrCr5fOwfFeFqK7VLCdFqu7JaCTKDzCYO2K0G3g23JLg=="],
 
     "content-disposition": ["content-disposition@1.0.0", "", { "dependencies": { "safe-buffer": "5.2.1" } }, "sha512-Au9nRL8VNUut/XSzbQA38+M78dzP4D+eqg3gfJHMIHHYa3bg067xj1KxMUWj+VULbiZMowKngFFbKczUrNJ1mg=="],
 
