@@ -1,7 +1,7 @@
 import type { Message } from 'discord.js';
 import { randomInt } from 'node:crypto';
 import { LevelingModule } from '@/modules/leveling-module';
-import { invalidate } from '@commandkit/cache';
+import { revalidateTag } from '@commandkit/cache';
 import { getCommandKit } from 'commandkit';
 import { fetchGuildPrefix } from '@/utils/prefix-resolver';
 import { isRateLimited } from '@/utils/throttle';
@@ -50,11 +50,9 @@ export default async function onMessageCreate(message: Message) {
         .to('leveling')
         .emit('levelUp', message, currentLevel.level + 1);
 
-      // invalidate the cache for the user and leaderboard
-      await invalidate([
-        `xp:${message.guildId}:${message.author.id}`, // xp cache
-        `leaderboard:${message.guildId}`, // leaderboard cache
-      ]);
+      // revalidate the cache for the user and leaderboard
+      await revalidateTag(`xp:${message.guildId}:${message.author.id}`);
+      await revalidateTag(`leaderboard:${message.guildId}`);
 
       return;
     }
@@ -68,9 +66,7 @@ export default async function onMessageCreate(message: Message) {
     level: currentLevel?.level ?? 1,
   });
 
-  // invalidate the cache for the user and leaderboard
-  await invalidate([
-    `xp:${message.guildId}:${message.author.id}`, // xp cache
-    `leaderboard:${message.guildId}`, // leaderboard cache
-  ]);
+  // revalidate the cache for the user and leaderboard
+  await revalidateTag(`xp:${message.guildId}:${message.author.id}`);
+  await revalidateTag(`leaderboard:${message.guildId}`);
 }

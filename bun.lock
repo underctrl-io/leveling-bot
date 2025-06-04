@@ -4,13 +4,13 @@
     "": {
       "name": "leveling-bot",
       "dependencies": {
-        "@commandkit/cache": "^0.0.0-dev.20250601135251",
-        "@commandkit/devtools": "^0.0.0-dev.20250601135251",
-        "@commandkit/i18n": "^0.1.2-dev.20250601135251",
-        "@commandkit/redis": "^0.1.1-dev.20250601135251",
+        "@commandkit/cache": "^0.0.0-dev.20250604160656",
+        "@commandkit/devtools": "^0.0.0-dev.20250604160656",
+        "@commandkit/i18n": "^0.1.2-dev.20250604160656",
+        "@commandkit/redis": "^0.1.1-dev.20250604160656",
         "@prisma/client": "^6.8.2",
         "canvacord": "^6.0.2",
-        "commandkit": "^1.0.0-dev.20250601135251",
+        "commandkit": "^1.0.0-dev.20250604160656",
         "discord.js": "^14.19.3",
         "prisma": "^6.8.2",
         "sharp": "^0.34.2",
@@ -83,13 +83,13 @@
 
     "@babel/types": ["@babel/types@7.27.3", "", { "dependencies": { "@babel/helper-string-parser": "^7.27.1", "@babel/helper-validator-identifier": "^7.27.1" } }, "sha512-Y1GkI4ktrtvmawoSq+4FCVHNryea6uR+qUQy0AGxLSsjCX0nVmkYQMBLHDkXZuo5hGx7eYdnIaslsdBFm7zbUw=="],
 
-    "@commandkit/cache": ["@commandkit/cache@0.0.0-dev.20250601135251", "", { "dependencies": { "ms": "^2.1.3" } }, "sha512-tbjMgEixi2f9II8H88Hvr2v93qOlaC94fsMk7C0tfUW1KKraH5b7an4IL1uzemGnLv9bAZ9uBVgkqYtLkd/yrA=="],
+    "@commandkit/cache": ["@commandkit/cache@0.0.0-dev.20250604160656", "", { "dependencies": { "ms": "^2.1.3", "stable-hash": "^0.0.6" } }, "sha512-ZcrPJXkwmpobFEm0NUWATXhm2Tfp6IlbAi+Et3MdcJ2XaTq7PaPDHfud8QZeNYed2jUfySlaf4yc9yBs1xjCcA=="],
 
-    "@commandkit/devtools": ["@commandkit/devtools@0.0.0-dev.20250601135251", "", { "dependencies": { "cors": "^2.8.5", "express": "^5.0.0", "jsonwebtoken": "^9.0.2" } }, "sha512-nvEjNu6NrpCnhQ/oy//oeCBHmBxI46YMl1apuYhBE1vNtGsiAR9RV68ya9yMnEFLtGIiZMOyAtHlcTX9b54y2A=="],
+    "@commandkit/devtools": ["@commandkit/devtools@0.0.0-dev.20250604160656", "", { "dependencies": { "cors": "^2.8.5", "express": "^5.0.0", "jsonwebtoken": "^9.0.2" } }, "sha512-lZRfCtgYA5Mad4m09TPFUcDXx2WCx1w2J7O9DIj4MWhmV/KRUCfAGUqBEnXu8Sn7qFp+yhqduOsPaE9A2Guttg=="],
 
-    "@commandkit/i18n": ["@commandkit/i18n@0.1.2-dev.20250601135251", "", { "dependencies": { "i18next": "^25.0.0", "i18next-fs-backend": "^2.6.0" } }, "sha512-H6pExt604oj4E3rV1N+pc/hBGpq8QJ3FSglkUAoQ9qMhWusNaKhGuzdwuSS3iZkXDVGCawNJSFtzWfXx4NfUng=="],
+    "@commandkit/i18n": ["@commandkit/i18n@0.1.2-dev.20250604160656", "", { "dependencies": { "i18next": "^25.0.0", "i18next-fs-backend": "^2.6.0" } }, "sha512-JDaXA6L0IMOAa5Ln3lA9jAELQruQi1ypRzgi+olzqBepc06Lp0rt+lu37Fn+2UsBj2Ly/ljtGtgc6IpjIe6vqA=="],
 
-    "@commandkit/redis": ["@commandkit/redis@0.1.1-dev.20250601135251", "", { "dependencies": { "ioredis": "^5.4.2" } }, "sha512-WIdBi/OkEjndhwTz5QB6NujGm82vPSggvSLCTqLZJ7gFMTHoJgNNs2pzSTfA+otznTieV5TmEnhMCq4/xFxpfg=="],
+    "@commandkit/redis": ["@commandkit/redis@0.1.1-dev.20250604160656", "", { "dependencies": { "ioredis": "^5.4.2" } }, "sha512-Huy3ZycXR+nU5B7zJVZ92lO1BIWZ6UMmdyfm/834Hfom3opaVNcJcG7KKAb6xhS+fc1cbpO1Or3OYuAJ1GiLMg=="],
 
     "@discordjs/builders": ["@discordjs/builders@1.11.2", "", { "dependencies": { "@discordjs/formatters": "^0.6.1", "@discordjs/util": "^1.1.1", "@sapphire/shapeshift": "^4.0.0", "discord-api-types": "^0.38.1", "fast-deep-equal": "^3.1.3", "ts-mixer": "^6.0.4", "tslib": "^2.6.3" } }, "sha512-F1WTABdd8/R9D1icJzajC4IuLyyS8f3rTOz66JsSI3pKvpCAtsMBweu8cyNYsIyvcrKAVn9EPK+Psoymq+XC0A=="],
 
@@ -387,7 +387,7 @@
 
     "commander": ["commander@13.1.0", "", {}, "sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw=="],
 
-    "commandkit": ["commandkit@1.0.0-dev.20250601135251", "", { "dependencies": { "@rollup/plugin-json": "^6.1.0", "chokidar": "^4.0.3", "commander": "^13.0.0", "directive-to-hof": "^0.0.2", "dotenv": "^16.4.7", "ms": "^2.1.3", "ora": "^8.0.1", "picocolors": "^1.1.1", "rfdc": "^1.3.1", "rimraf": "^6.0.0", "tsdown": "^0.12.4", "use-macro": "^1.1.0" }, "peerDependencies": { "discord.js": "^14" }, "bin": { "commandkit": "bin/index.mjs" } }, "sha512-g3lfkjxMB53BrUhbpAAJgrUTKKNtfcy280HGttsWUWsrCr5fOwfFeFqK7VLCdFqu7JaCTKDzCYO2K0G3g23JLg=="],
+    "commandkit": ["commandkit@1.0.0-dev.20250604160656", "", { "dependencies": { "@rollup/plugin-json": "^6.1.0", "chokidar": "^4.0.3", "commander": "^13.0.0", "directive-to-hof": "^0.0.2", "dotenv": "^16.4.7", "ms": "^2.1.3", "ora": "^8.0.1", "picocolors": "^1.1.1", "rfdc": "^1.3.1", "rimraf": "^6.0.0", "tsdown": "^0.12.6", "use-macro": "^1.1.0" }, "peerDependencies": { "discord.js": "^14" }, "bin": { "commandkit": "bin/index.mjs" } }, "sha512-5pOClVkQc6GbAhfGPWjNB+uejWQBNwAl4ytzb96O3o9/RE8sobK72+x1FMi/++nmGIytMVZrIViEWtX1niLm8A=="],
 
     "content-disposition": ["content-disposition@1.0.0", "", { "dependencies": { "safe-buffer": "5.2.1" } }, "sha512-Au9nRL8VNUut/XSzbQA38+M78dzP4D+eqg3gfJHMIHHYa3bg067xj1KxMUWj+VULbiZMowKngFFbKczUrNJ1mg=="],
 
@@ -715,6 +715,8 @@
 
     "simple-swizzle": ["simple-swizzle@0.2.2", "", { "dependencies": { "is-arrayish": "^0.3.1" } }, "sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg=="],
 
+    "stable-hash": ["stable-hash@0.0.6", "", {}, "sha512-0afH4mobqTybYZsXImQRLOjHV4gvOW+92HdUIax9t7a8d9v54KWykEuMVIcXhD9BCi+w3kS4x7O6fmZQ3JlG/g=="],
+
     "standard-as-callback": ["standard-as-callback@2.1.0", "", {}, "sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A=="],
 
     "statuses": ["statuses@2.0.1", "", {}, "sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ=="],
@@ -749,7 +751,7 @@
 
     "ts-mixer": ["ts-mixer@6.0.4", "", {}, "sha512-ufKpbmrugz5Aou4wcr5Wc1UUFWOLhq+Fm6qa6P0w0K5Qw2yhaUoiWszhCVuNQyNwrlGiscHOmqYoAox1PtvgjA=="],
 
-    "tsdown": ["tsdown@0.12.5", "", { "dependencies": { "ansis": "^4.1.0", "cac": "^6.7.14", "chokidar": "^4.0.3", "debug": "^4.4.1", "diff": "^8.0.2", "empathic": "^1.1.0", "hookable": "^5.5.3", "rolldown": "1.0.0-beta.10-commit.87188ed", "rolldown-plugin-dts": "^0.13.6", "semver": "^7.7.2", "tinyexec": "^1.0.1", "tinyglobby": "^0.2.14", "unconfig": "^7.3.2" }, "peerDependencies": { "publint": "^0.3.0", "typescript": "^5.0.0", "unplugin-lightningcss": "^0.4.0", "unplugin-unused": "^0.5.0" }, "optionalPeers": ["publint", "typescript", "unplugin-lightningcss", "unplugin-unused"], "bin": { "tsdown": "dist/run.js" } }, "sha512-5tzqVakJOdIVJLBB6K1e7L4pPTkyLxArkidwsY1jd4P1/4GplYxeHGRmGz8evsXaPJW6IumdbDvIVnmWMnIy2A=="],
+    "tsdown": ["tsdown@0.12.6", "", { "dependencies": { "ansis": "^4.1.0", "cac": "^6.7.14", "chokidar": "^4.0.3", "debug": "^4.4.1", "diff": "^8.0.2", "empathic": "^1.1.0", "hookable": "^5.5.3", "rolldown": "1.0.0-beta.10-commit.87188ed", "rolldown-plugin-dts": "^0.13.6", "semver": "^7.7.2", "tinyexec": "^1.0.1", "tinyglobby": "^0.2.14", "unconfig": "^7.3.2" }, "peerDependencies": { "@arethetypeswrong/core": "^0.18.1", "publint": "^0.3.0", "typescript": "^5.0.0", "unplugin-lightningcss": "^0.4.0", "unplugin-unused": "^0.5.0" }, "optionalPeers": ["@arethetypeswrong/core", "publint", "typescript", "unplugin-lightningcss", "unplugin-unused"], "bin": { "tsdown": "dist/run.js" } }, "sha512-NIqmptXCYc0iZzSGNpFtWATTDM5MyqDfV7bhgqfrw8KJlEFLI9zYyF4uFDheEvudTMNH5dkcQUJaklpmHsA37A=="],
 
     "tslib": ["tslib@2.8.1", "", {}, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
 
