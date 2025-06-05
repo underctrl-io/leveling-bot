@@ -1,3 +1,4 @@
+import { locale } from '@commandkit/i18n';
 import { Container, TextDisplay } from 'commandkit';
 import { Colors, Message, MessageFlags } from 'discord.js';
 import { randomInt } from 'node:crypto';
@@ -7,14 +8,17 @@ export default async function onLevelUp(
   message: Message<true>,
   newLevel: number
 ) {
+  const { t } = locale(message.guild!.preferredLocale);
   const colors = Object.values(Colors);
   const randomColor = colors[randomInt(colors.length)];
 
   const container = (
     <Container accentColor={randomColor}>
-      {/* prettier-ignore */}
       <TextDisplay>
-        🎉 {message.author.toString()} You have leveled up to level **{newLevel.toLocaleString()}**!
+        {t('level_up', {
+          user: message.author.toString(),
+          level: newLevel.toLocaleString(),
+        })}
       </TextDisplay>
     </Container>
   );
