@@ -3,11 +3,7 @@ import { Container, TextDisplay } from 'commandkit';
 import { Colors, Message, MessageFlags } from 'discord.js';
 import { randomInt } from 'node:crypto';
 
-// this is a custom event that is triggered when a user levels up
-export default async function onLevelUp(
-  message: Message<true>,
-  newLevel: number
-) {
+export async function plainResponse(message: Message, newLevel: number) {
   const { t } = locale(message.guild!.preferredLocale);
   const colors = Object.values(Colors);
   const randomColor = colors[randomInt(colors.length)];
