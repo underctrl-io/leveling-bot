@@ -36,7 +36,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
   const { t } = ctx.locale();
   await ctx.interaction.deferReply();
 
-  const leaderboard = await getLeaderboardCard(ctx.guild as unknown as Guild);
+  const leaderboard = await getLeaderboardCard(ctx.guild!);
 
   if (!leaderboard) {
     await ctx.interaction.editReply({
@@ -55,7 +55,7 @@ export const chatInput: ChatInputCommand = async (ctx) => {
 
 export const message: MessageCommand = async (ctx) => {
   const { t } = ctx.locale();
-  const leaderboard = await getLeaderboardCard(ctx.guild as unknown as Guild);
+  const leaderboard = await getLeaderboardCard(ctx.guild!);
 
   if (!leaderboard) {
     await ctx.message.reply({

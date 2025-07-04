@@ -76,7 +76,7 @@ async function commonInteraction(
 
   await interaction.deferReply();
 
-  const attachment = await getRankCard(guildId, target as unknown as User);
+  const attachment = await getRankCard(guildId, target);
 
   if (!attachment) {
     await interaction.editReply({
@@ -95,18 +95,12 @@ async function commonInteraction(
 
 export const userContextMenu: UserContextMenuCommand = async (ctx) => {
   const { t } = ctx.locale();
-  await commonInteraction(
-    ctx.interaction as unknown as UserContextMenuCommandInteraction,
-    t
-  );
+  await commonInteraction(ctx.interaction, t);
 };
 
 export const chatInput: ChatInputCommand = async (ctx) => {
   const { t } = ctx.locale();
-  await commonInteraction(
-    ctx.interaction as unknown as ChatInputCommandInteraction,
-    t
-  );
+  await commonInteraction(ctx.interaction, t);
 };
 
 export const message: MessageCommand = async (ctx) => {
@@ -134,7 +128,7 @@ export const message: MessageCommand = async (ctx) => {
     return;
   }
 
-  const attachment = await getRankCard(guildId, target as unknown as User);
+  const attachment = await getRankCard(guildId, target);
 
   if (!attachment) {
     await ctx.message.reply({
@@ -146,9 +140,7 @@ export const message: MessageCommand = async (ctx) => {
 
   await ctx.message.reply({
     files: [attachment],
-    components: [
-      <Component attachment={attachment} target={target as unknown as User} />,
-    ],
+    components: [<Component attachment={attachment} target={target} />],
     flags: MessageFlags.IsComponentsV2,
   });
 };

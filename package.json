@@ -19,16 +19,16 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@commandkit/analytics": "^0.1.0-dev.20250606121449",
-    "@commandkit/cache": "^0.0.0-dev.20250606121449",
-    "@commandkit/devtools": "^0.0.0-dev.20250606121449",
-    "@commandkit/i18n": "^0.1.2-dev.20250606121449",
-    "@commandkit/redis": "^0.1.1-dev.20250606121449",
+    "@commandkit/analytics": "^0.1.0-dev.20250704022725",
+    "@commandkit/cache": "^0.0.0-dev.20250704022725",
+    "@commandkit/devtools": "^0.0.0-dev.20250704022725",
+    "@commandkit/i18n": "^0.1.2-dev.20250704022725",
+    "@commandkit/redis": "^0.1.1-dev.20250704022725",
     "@prisma/client": "^6.8.2",
     "@umami/node": "^0.4.0",
     "canvacord": "^6.0.2",
-    "commandkit": "^1.0.0-dev.20250606121449",
-    "discord.js": "^14.19.3",
+    "commandkit": "^1.0.0-dev.20250704022725",
+    "discord.js": "^14.21.0",
     "murmurhash": "^2.0.1",
     "prisma": "^6.8.2",
     "sharp": "^0.34.2"
